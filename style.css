@@ -16,7 +16,6 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 999;
-  transition: opacity 1s ease;
 }
 
 .loader-text {
@@ -26,22 +25,17 @@ body {
 }
 
 @keyframes pulse {
-  0% { opacity: 0.3; }
-  50% { opacity: 1; }
-  100% { opacity: 0.3; }
+  50% { opacity: 0.3; }
 }
 
 /* NAVBAR */
 #navbar {
   position: fixed;
-  top: 0;
   width: 100%;
   padding: 20px 50px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   z-index: 100;
-  transition: 0.4s ease;
 }
 
 #navbar.scrolled {
@@ -49,31 +43,15 @@ body {
   backdrop-filter: blur(12px);
 }
 
-.logo {
-  height: 40px;
-}
-
-#navbar ul {
-  display: flex;
-  gap: 30px;
-  list-style: none;
-  color: rgba(255,255,255,0.7);
-}
+.logo { height: 40px; }
 
 .cta {
-  background: linear-gradient(135deg, #c96f4a, #a94e2f);
-  padding: 10px 22px;
-  border-radius: 6px;
-  font-weight: 600;
-}
-
-/* SECTION */
-#scroll-section {
-  height: 400vh;
-  position: relative;
+  background: linear-gradient(135deg,#c96f4a,#a94e2f);
+  padding: 10px 20px;
 }
 
 /* CANVAS */
+#scroll-section { height: 400vh; }
 canvas {
   position: sticky;
   top: 0;
@@ -88,8 +66,7 @@ canvas {
   left: 50%;
   transform: translate(-50%, 40px);
   opacity: 0;
-  text-align: center;
-  transition: all 0.8s ease;
+  transition: 0.8s;
 }
 
 .overlay.active {
@@ -97,36 +74,20 @@ canvas {
   transform: translate(-50%, -50%);
 }
 
-h1 {
-  font-size: 4rem;
-}
-
-h2 {
-  font-size: 2.5rem;
-}
-
-p {
-  color: rgba(255,255,255,0.7);
-}
-
-/* CINEMATIC EFFECTS */
+/* FX */
 .film-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
   background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.8));
-  z-index: 5;
+  pointer-events: none;
 }
 
 .dust {
   position: fixed;
   width: 100%;
   height: 100%;
-  pointer-events: none;
   background: url('https://grainy-gradients.vercel.app/noise.svg');
   opacity: 0.08;
-  z-index: 4;
+  pointer-events: none;
 }
