@@ -1,9 +1,34 @@
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background: #0e0e0e;
+  background: #0b0b0b;
   color: white;
   overflow-x: hidden;
+}
+
+/* LOADER */
+#loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #0b0b0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  transition: opacity 1s ease;
+}
+
+.loader-text {
+  font-size: 2rem;
+  letter-spacing: 4px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
 }
 
 /* NAVBAR */
@@ -56,7 +81,7 @@ canvas {
   height: 100vh;
 }
 
-/* OVERLAYS */
+/* TEXT */
 .overlay {
   position: absolute;
   top: 50%;
@@ -74,19 +99,17 @@ canvas {
 
 h1 {
   font-size: 4rem;
-  margin-bottom: 10px;
 }
 
 h2 {
   font-size: 2.5rem;
-  margin-bottom: 10px;
 }
 
 p {
   color: rgba(255,255,255,0.7);
 }
 
-/* CINEMATIC FILM EFFECT */
+/* CINEMATIC EFFECTS */
 .film-overlay {
   position: fixed;
   top: 0;
@@ -96,4 +119,14 @@ p {
   pointer-events: none;
   background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.8));
   z-index: 5;
+}
+
+.dust {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: url('https://grainy-gradients.vercel.app/noise.svg');
+  opacity: 0.08;
+  z-index: 4;
 }
