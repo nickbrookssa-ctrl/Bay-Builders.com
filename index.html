@@ -1,83 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+const canvas = document.getElementById("frame-canvas");
+const ctx = canvas.getContext("2d");
 
-<title>Bay Builders | Luxury Construction</title>
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-<link rel="stylesheet" href="style.css">
+const frameCount = 240;
+const images = [];
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+// LOAD FRAMES
+for (let i = 1; i <= frameCount; i++) {
+  const img = new Image();
+  img.src = `frames/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
+  images.push(img);
+}
 
-<!-- Three.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
-</head>
+function draw(frame) {
+  const img = images[frame];
+  if (!img) return;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+}
 
-<body>
+// THREE JS
+let scene, camera, renderer, cube;
 
-<!-- NAV -->
-<nav class="navbar">
-  <img src="assets/logo.png" class="logo">
-  <div class="nav-links">
-    <a href="#">Home</a>
-    <a href="#">Projects</a>
-    <a href="#">Services</a>
-    <a href="#">Contact</a>
-  </div>
-</nav>
+function initThree() {
+  const container = document.getElementById("three-container");
 
-<!-- SCROLL ANIMATION -->
-<canvas id="frame-canvas"></canvas>
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 
-<!-- 3D -->
-<div id="three-container"></div>
+  renderer = new THREE.WebGLRenderer({ alpha: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  container.appendChild(renderer.domElement);
 
-<!-- CONTENT OVERLAYS -->
-<section class="content">
+  const geometry = new THREE.BoxGeometry();
+  const material = new THREE.MeshStandardMaterial({ color: 0xff5a1f });
 
-  <div class="section hero">
-    <h1>BAY BUILDERS</h1>
-    <p>Luxury Construction & Precision Engineering</p>
-  </div>
+  cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
 
-  <div class="section about">
-    <h2>Built on Precision</h2>
-    <p>Bay Builders delivers premium residential and commercial construction, combining craftsmanship with modern engineering.</p>
-  </div>
+  const light = new THREE.DirectionalLight(0xffffff, 1);
+  light.position.set(2,2,5);
+  scene.add(light);
 
-  <div class="section services">
-    <h2>Our Services</h2>
-    <ul>
-      <li>Turnkey Projects</li>
-      <li>New Builds</li>
-      <li>Renovations</li>
-      <li>Interior & Exterior</li>
-      <li>Architectural Finishes</li>
-    </ul>
-  </div>
+  camera.position.z = 3;
 
-  <!-- AI PLACEHOLDER GALLERY -->
-  <div class="section gallery">
-    <h2>Featured Projects</h2>
-    <div class="grid">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
-      <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c">
-      <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea">
-    </div>
-  </div>
+  animate();
+}
 
-  <div class="section contact">
-    <h2>Let’s Build Your Vision</h2>
-    <p>📞 083 379 9899</p>
-  </div>
+function animate() {
+  requestAnimationFrame(animate);
+  cube.rotation.x += 0.01;
+  cube.rotation.y += 0.01;
+  renderer.render(scene, camera);
+}
 
-</section>
+initThree();
 
-<!-- SCROLL SPACE -->
-<div class="scroll-space"></div>
+// SCROLL SYSTEM
+window.addEventListener("scroll", () => {
 
-<script src="script.js"></script>
-</body>
-</html>
+  const scrollTop = window.scrollY;
+  const maxScroll = document.body.scrollHeight - window.innerHeight;
+  const progress = scrollTop / maxScroll;
+
+  // SCENE 1
+  if (progress < 0.4) {
+    const frame = Math.floor(progress / 0.4 * 160);
+    draw(frame);
+    canvas.style.opacity = 1;
+    document.getElementById("three-container").style.opacity = 0;
+  }
+
+  // SCENE 2
+  else if (progress < 0.7) {
+    const frame = 160 + Math.floor((progress - 0.4) / 0.3 * 80);
+    draw(frame);
+  }
+
+  // SCENE 3 (3D)
+  else {
+    const fade = (progress - 0.7) / 0.3;
+    canvas.style.opacity = 1 - fade;
+    document.getElementById("three-container").style.opacity = fade;
+  }
+
+});
