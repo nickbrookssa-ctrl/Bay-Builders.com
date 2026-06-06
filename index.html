@@ -4,13 +4,51 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bay Builders</title>
-  <link rel="stylesheet" href="style.css"/>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<nav>
-  <img src="assets/logo.png" class="logo">
-</nav>
-<canvas id="animation-canvas"></canvas>
-<script src="script.js"></script>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <img src="assets/logo.png" class="logo" />
+    <ul>
+      <li>Home</li>
+      <li>Projects</li>
+      <li>Services</li>
+      <li>Contact</li>
+    </ul>
+    <a class="cta">Get a Quote</a>
+  </nav>
+
+  <!-- SCROLL SECTION -->
+  <section id="scroll-section">
+    <canvas id="animation-canvas"></canvas>
+
+    <div class="overlay" data-start="0" data-end="0.2">
+      <h1>BAY BUILDERS</h1>
+      <p>Building Your Vision</p>
+    </div>
+
+    <div class="overlay" data-start="0.2" data-end="0.5">
+      <h2>Built on Precision</h2>
+      <p>Every structure is engineered with care.</p>
+    </div>
+
+    <div class="overlay" data-start="0.5" data-end="0.8">
+      <h2>What We Offer</h2>
+      <p>Turnkey • Renovations • New Builds</p>
+    </div>
+
+    <div class="overlay" data-start="0.8" data-end="1">
+      <h1>Let’s Build Your Vision</h1>
+    </div>
+
+  </section>
+
+  <div style="height:400vh;"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
