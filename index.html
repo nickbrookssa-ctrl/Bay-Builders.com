@@ -1,18 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Bay Builders 3D</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body { margin: 0; overflow: hidden; }
-    canvas { display: block; }
-  </style>
+<title>Bay Builders | Luxury Construction</title>
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
 </head>
+
 <body>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-<script src="main.js"></script>
+<!-- NAV -->
+<nav class="navbar">
+  <img src="assets/logo.png" class="logo">
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Projects</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+  </div>
+</nav>
 
+<!-- SCROLL ANIMATION -->
+<canvas id="frame-canvas"></canvas>
+
+<!-- 3D -->
+<div id="three-container"></div>
+
+<!-- CONTENT OVERLAYS -->
+<section class="content">
+
+  <div class="section hero">
+    <h1>BAY BUILDERS</h1>
+    <p>Luxury Construction & Precision Engineering</p>
+  </div>
+
+  <div class="section about">
+    <h2>Built on Precision</h2>
+    <p>Bay Builders delivers premium residential and commercial construction, combining craftsmanship with modern engineering.</p>
+  </div>
+
+  <div class="section services">
+    <h2>Our Services</h2>
+    <ul>
+      <li>Turnkey Projects</li>
+      <li>New Builds</li>
+      <li>Renovations</li>
+      <li>Interior & Exterior</li>
+      <li>Architectural Finishes</li>
+    </ul>
+  </div>
+
+  <!-- AI PLACEHOLDER GALLERY -->
+  <div class="section gallery">
+    <h2>Featured Projects</h2>
+    <div class="grid">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
+      <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c">
+      <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea">
+    </div>
+  </div>
+
+  <div class="section contact">
+    <h2>Let’s Build Your Vision</h2>
+    <p>📞 083 379 9899</p>
+  </div>
+
+</section>
+
+<!-- SCROLL SPACE -->
+<div class="scroll-space"></div>
+
+<script src="script.js"></script>
 </body>
 </html>
