@@ -1,3 +1,5 @@
+import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
+
 const canvas = document.getElementById("frame-canvas");
 const ctx = canvas.getContext("2d");
 
@@ -9,7 +11,7 @@ const images = [];
 let imagesLoaded = 0;
 let currentFrame = 0;
 
-// LOAD IMAGES PROPERLY
+// LOAD IMAGES
 function preloadImages() {
   return new Promise(resolve => {
     for (let i = 1; i <= frameCount; i++) {
@@ -26,7 +28,7 @@ function preloadImages() {
   });
 }
 
-// DRAW FUNCTION
+// DRAW FRAME
 function draw(frame) {
   const img = images[frame];
   if (!img) return;
@@ -35,23 +37,31 @@ function draw(frame) {
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 }
 
-// THREE.JS
+// THREE.JS SETUP
 let scene, camera, renderer, cube;
 
 function initThree() {
   const container = document.getElementById("three-container");
 
   scene = new THREE.Scene();
-  camera = new THREE.PerspectiveCamera(75, innerWidth/innerHeight, 0.1, 1000);
 
-  renderer = new THREE.WebGLRenderer({ alpha: true });
-  renderer.setSize(innerWidth, innerHeight);
+  camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+  );
+
+  renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
 
+  // LIGHT
   const light = new THREE.DirectionalLight(0xffffff, 1);
-  light.position.set(2,2,5);
+  light.position.set(2, 2, 5);
   scene.add(light);
 
+  // OBJECT (HOUSE PIECE TEST)
   cube = new THREE.Mesh(
     new THREE.BoxGeometry(),
     new THREE.MeshStandardMaterial({ color: 0xff5a1f })
@@ -62,7 +72,9 @@ function initThree() {
 
   function animate() {
     requestAnimationFrame(animate);
+
     cube.rotation.y += 0.01;
+
     renderer.render(scene, camera);
   }
 
@@ -71,11 +83,12 @@ function initThree() {
 
 // SCROLL CONTROL
 function onScroll() {
-  const maxScroll = document.body.scrollHeight - innerHeight;
+  const maxScroll = document.body.scrollHeight - window.innerHeight;
   const progress = window.scrollY / maxScroll;
 
   if (progress < 0.7) {
     const frame = Math.floor(progress * frameCount);
+
     if (frame !== currentFrame) {
       currentFrame = frame;
       draw(frame);
@@ -91,9 +104,21 @@ function onScroll() {
   }
 }
 
-// INIT EVERYTHING
+// RESIZE FIX (IMPORTANT)
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  if (renderer && camera) {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+  }
+});
+
+// INIT
 preloadImages().then(() => {
-  draw(0); // ✅ FIRST FRAME GUARANTEED
+  draw(0);
   window.addEventListener("scroll", onScroll);
   initThree();
 });
