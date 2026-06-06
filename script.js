@@ -1,127 +1,104 @@
-// ===== CONFIG =====
 const START = 1;
 const END = 240;
 const TOTAL = END - START + 1;
 
-const PATH = (i) => `frames/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
+const PATH = i => `frames/ezgif-frame-${String(i).padStart(3,'0')}.jpg`;
 
 let images = [];
 let currentFrame = 0;
+let mouseX = 0;
+let mouseY = 0;
 
 const canvas = document.getElementById("animation-canvas");
 const ctx = canvas.getContext("2d");
+const boom = document.getElementById("boomSound");
 
-// ===== RESIZE =====
+// resize
 function resize() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  draw(currentFrame);
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
 }
-window.addEventListener("resize", resize);
 resize();
+addEventListener("resize", resize);
 
-// ===== PRELOAD IMAGES =====
+// mouse movement (parallax)
+addEventListener("mousemove", e => {
+  mouseX = (e.clientX / innerWidth - 0.5) * 20;
+  mouseY = (e.clientY / innerHeight - 0.5) * 20;
+});
+
+// preload
 function preload() {
-  return new Promise((resolve) => {
+  return new Promise(res => {
     let loaded = 0;
-
     for (let i = START; i <= END; i++) {
       const img = new Image();
       img.src = PATH(i);
-
-      img.onload = () => {
-        loaded++;
-        if (loaded === TOTAL) resolve();
-      };
-
-      img.onerror = () => {
-        console.warn("Missing:", img.src);
-        loaded++;
-        if (loaded === TOTAL) resolve();
-      };
-
+      img.onload = () => (++loaded === TOTAL && res());
+      img.onerror = () => (++loaded === TOTAL && res());
       images.push(img);
     }
   });
 }
 
-// ===== DRAW FRAME =====
-function draw(index) {
-  const img = images[index];
+// draw with zoom + parallax + shake
+function draw(i, shake = 0) {
+  const img = images[i];
   if (!img) return;
 
-  // Maintain aspect ratio (cover effect)
-  const canvasRatio = canvas.width / canvas.height;
-  const imgRatio = img.width / img.height;
+  const zoom = 1 + i / TOTAL * 0.1;
 
-  let drawWidth, drawHeight, offsetX = 0, offsetY = 0;
+  const x = (canvas.width - canvas.width*zoom)/2 + mouseX + (Math.random()-0.5)*shake;
+  const y = (canvas.height - canvas.height*zoom)/2 + mouseY + (Math.random()-0.5)*shake;
 
-  if (imgRatio > canvasRatio) {
-    drawHeight = canvas.height;
-    drawWidth = imgRatio * drawHeight;
-    offsetX = (canvas.width - drawWidth) / 2;
-  } else {
-    drawWidth = canvas.width;
-    drawHeight = drawWidth / imgRatio;
-    offsetY = (canvas.height - drawHeight) / 2;
-  }
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.drawImage(img, x, y, canvas.width*zoom, canvas.height*zoom);
 }
 
-// ===== SCROLL ANIMATION =====
+// scroll
 function onScroll() {
-  const scroll = window.scrollY;
-  const max = document.body.scrollHeight - window.innerHeight;
+  const max = document.body.scrollHeight - innerHeight;
+  let p = scrollY / max;
 
-  let progress = scroll / max;
+  let shake = 0;
 
-  // Smooth cinematic easing
-  progress = Math.pow(progress, 1.4);
+  if (p < 0.3) {
+    p *= 0.5;
+  } else if (p < 0.6) {
+    p = 0.15 + (p - 0.3) * 1.5;
 
-  const frame = Math.min(
-    TOTAL - 1,
-    Math.floor(progress * TOTAL)
-  );
+    // 💥 explosion zone
+    shake = 10;
+
+    if (!boom.played.length) boom.play();
+  } else {
+    p = 0.6 + (p - 0.6) * 0.6;
+  }
+
+  const frame = Math.floor(p * TOTAL);
 
   if (frame !== currentFrame) {
     currentFrame = frame;
-    requestAnimationFrame(() => draw(currentFrame));
+    requestAnimationFrame(() => draw(frame, shake));
   }
 
-  updateText(progress);
-  updateNavbar(scroll);
-}
-
-window.addEventListener("scroll", onScroll);
-
-// ===== TEXT OVERLAYS =====
-function updateText(progress) {
-  document.querySelectorAll(".overlay").forEach(el => {
-    const start = parseFloat(el.dataset.start);
-    const end = parseFloat(el.dataset.end);
-
-    if (progress >= start && progress <= end) {
-      el.classList.add("active");
-    } else {
-      el.classList.remove("active");
-    }
+  document.querySelectorAll(".overlay").forEach(el=>{
+    const s=el.dataset.start,e=el.dataset.end;
+    el.classList.toggle("active", p>=s && p<=e);
   });
+
+  document.getElementById("navbar")
+    .classList.toggle("scrolled", scrollY>50);
 }
 
-// ===== NAVBAR EFFECT =====
-function updateNavbar(scroll) {
-  const nav = document.getElementById("navbar");
+addEventListener("scroll", onScroll);
 
-  if (scroll > 50) {
-    nav.classList.add("scrolled");
-  } else {
-    nav.classList.remove("scrolled");
-  }
-}
-
-// ===== INIT =====
-preload().then(() => {
+// init
+preload().then(()=>{
   draw(0);
+  const loader = document.getElementById("loader");
+  setTimeout(()=>{
+    loader.style.opacity=0;
+    setTimeout(()=>loader.remove(),1000);
+  },500);
 });
