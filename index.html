@@ -1,67 +1,116 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bay Builders – Luxury Construction</title>
+const START = 1;
+const END = 240;
+const TOTAL = END - START + 1;
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+const PATH = (i) => `frames/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-text">BAY BUILDERS</div>
-</div>
+let images = [];
+let currentFrame = 0;
 
-<!-- NAVBAR -->
-<nav id="navbar">
-  <img src="assets/logo.png" class="logo" />
+const canvas = document.getElementById("animation-canvas");
+const ctx = canvas.getContext("2d");
 
-  <ul>
-    <li>Home</li>
-    <li>Projects</li>
-    <li>Services</li>
-    <li>Contact</li>
-  </ul>
+// Resize
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  draw(currentFrame);
+}
+window.addEventListener("resize", resize);
+resize();
 
-  <a class="cta">Get Quote</a>
-</nav>
+// Preload
+function preload() {
+  return new Promise((resolve) => {
+    let loaded = 0;
 
-<!-- EFFECTS -->
-<div class="film-overlay"></div>
-<div class="dust"></div>
+    for (let i = START; i <= END; i++) {
+      const img = new Image();
+      img.src = PATH(i);
 
-<!-- SCROLL SECTION -->
-<section id="scroll-section">
+      img.onload = () => {
+        if (++loaded === TOTAL) resolve();
+      };
 
-  <canvas id="animation-canvas"></canvas>
+      img.onerror = () => {
+        if (++loaded === TOTAL) resolve();
+      };
 
-  <div class="overlay" data-start="0.05" data-end="0.2">
-    <h1>BAY BUILDERS</h1>
-    <p>Luxury Construction Since 2004</p>
-  </div>
+      images.push(img);
+    }
+  });
+}
 
-  <div class="overlay" data-start="0.25" data-end="0.45">
-    <h2>Precision Engineering</h2>
-    <p>Every detail crafted with excellence.</p>
-  </div>
+// Draw with zoom
+function draw(index) {
+  const img = images[index];
+  if (!img) return;
 
-  <div class="overlay" data-start="0.45" data-end="0.7">
-    <h2>Structure Revealed</h2>
-    <p>See the craftsmanship behind every build.</p>
-  </div>
+  const zoom = 1 + index / TOTAL * 0.1;
 
-  <div class="overlay" data-start="0.7" data-end="0.95">
-    <h1>Let’s Build Your Vision</h1>
-    <p>083 379 9899</p>
-  </div>
+  const width = canvas.width * zoom;
+  const height = canvas.height * zoom;
 
-</section>
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(
+    img,
+    (canvas.width - width) / 2,
+    (canvas.height - height) / 2,
+    width,
+    height
+  );
+}
 
-<div style="height:400vh;"></div>
+// Scroll
+function onScroll() {
+  const scroll = window.scrollY;
+  const max = document.body.scrollHeight - window.innerHeight;
 
-<script src="script.js"></script>
-</body>
-</html>
+  let progress = scroll / max;
+
+  // cinematic timing
+  if (progress < 0.3) {
+    progress *= 0.5;
+  } else if (progress < 0.6) {
+    progress = 0.15 + (progress - 0.3) * 1.5;
+  } else {
+    progress = 0.6 + (progress - 0.6) * 0.6;
+  }
+
+  const frame = Math.min(TOTAL - 1, Math.floor(progress * TOTAL));
+
+  if (frame !== currentFrame) {
+    currentFrame = frame;
+    requestAnimationFrame(() => draw(currentFrame));
+  }
+
+  // text
+  document.querySelectorAll(".overlay").forEach(el => {
+    const start = parseFloat(el.dataset.start);
+    const end = parseFloat(el.dataset.end);
+
+    if (progress >= start && progress <= end) {
+      el.classList.add("active");
+    } else {
+      el.classList.remove("active");
+    }
+  });
+
+  // navbar
+  document.getElementById("navbar")
+    .classList.toggle("scrolled", scroll > 50);
+}
+
+window.addEventListener("scroll", onScroll);
+
+// INIT + LOADER
+preload().then(() => {
+  draw(0);
+
+  const loader = document.getElementById("loader");
+
+  setTimeout(() => {
+    loader.style.opacity = "0";
+    setTimeout(() => loader.style.display = "none", 1000);
+  }, 500);
+});
