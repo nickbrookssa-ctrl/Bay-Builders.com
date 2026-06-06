@@ -9,86 +9,41 @@
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+<!-- ✅ FIXED THREE.JS -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
 </head>
 
 <body>
 
-<!-- NAV -->
 <nav class="navbar">
   <img src="assets/logo.png" class="logo">
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </div>
 </nav>
 
-<!-- BACKGROUND ANIMATION -->
 <canvas id="frame-canvas"></canvas>
 <div id="three-container"></div>
 
-<!-- CONTENT -->
 <main>
-
-  <!-- HERO -->
   <section class="section hero">
-    <div class="inner">
-      <h1>BAY BUILDERS</h1>
-      <p>Crafting Premium Spaces with Precision</p>
-    </div>
+    <h1>BAY BUILDERS</h1>
+    <p>Luxury Construction & Precision Engineering</p>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="section">
-    <div class="inner">
-      <h2>Built on Precision</h2>
-      <p>
-        Bay Builders is a premium construction company specialising in high-end residential and commercial projects.
-        Every structure is engineered with accuracy, durability, and refined craftsmanship.
-      </p>
-    </div>
+  <section class="section">
+    <h2>Built on Precision</h2>
+    <p>We deliver high-end residential and commercial builds with exceptional craftsmanship.</p>
   </section>
 
-  <!-- SERVICES -->
-  <section id="services" class="section dark">
-    <div class="inner">
-      <h2>Our Services</h2>
-      <div class="grid-3">
-        <div>Turnkey Projects</div>
-        <div>New Builds</div>
-        <div>Renovations</div>
-        <div>Interior & Exterior</div>
-        <div>Structural Work</div>
-        <div>Finishing & Design</div>
-      </div>
-    </div>
+  <section class="section">
+    <h2>Our Services</h2>
+    <p>Turnkey Projects • Renovations • New Builds • Finishes</p>
   </section>
 
-  <!-- PROJECTS (AI PLACEHOLDER) -->
-  <section id="projects" class="section">
-    <div class="inner">
-      <h2>Featured Projects</h2>
-      <div class="gallery">
-        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
-        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c">
-        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea">
-      </div>
-    </div>
+  <section class="section">
+    <h2>Let’s Build Your Vision</h2>
+    <p>083 379 9899</p>
   </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="section contact">
-    <div class="inner">
-      <h2>Let’s Build Your Vision</h2>
-      <p>📞 083 379 9899</p>
-    </div>
-  </section>
-
 </main>
 
-<!-- SCROLL SPACE FOR ANIMATION -->
 <div class="scroll-space"></div>
 
 <script src="script.js"></script>
