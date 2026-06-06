@@ -1,93 +1,86 @@
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background: #0b0b0b;
+  background: black;
   color: white;
   overflow-x: hidden;
 }
 
-/* LOADER */
-#loader {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: #0b0b0b;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-.loader-text {
-  font-size: 2rem;
-  letter-spacing: 4px;
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  50% { opacity: 0.3; }
-}
-
 /* NAVBAR */
-#navbar {
+.navbar {
   position: fixed;
   width: 100%;
-  padding: 20px 50px;
+  top: 0;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
-  z-index: 100;
+  z-index: 10;
 }
 
-#navbar.scrolled {
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(12px);
+.logo {
+  height: 40px;
 }
 
-.logo { height: 40px; }
-
-.cta {
-  background: linear-gradient(135deg,#c96f4a,#a94e2f);
-  padding: 10px 20px;
+.nav-links a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
 }
 
 /* CANVAS */
-#scroll-section { height: 400vh; }
-canvas {
-  position: sticky;
-  top: 0;
+#frame-canvas {
+  position: fixed;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  z-index: 1;
 }
 
-/* TEXT */
-.overlay {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 40px);
+/* 3D */
+#three-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
   opacity: 0;
-  transition: 0.8s;
 }
 
-.overlay.active {
-  opacity: 1;
-  transform: translate(-50%, -50%);
+/* CONTENT */
+.content {
+  position: relative;
+  z-index: 5;
 }
 
-/* FX */
-.film-overlay {
-  position: fixed;
+.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px;
+}
+
+.hero h1 {
+  font-size: 60px;
+}
+
+.services ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* GALLERY */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.grid img {
   width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.8));
-  pointer-events: none;
+  height: 250px;
+  object-fit: cover;
 }
 
-.dust {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: url('https://grainy-gradients.vercel.app/noise.svg');
-  opacity: 0.08;
-  pointer-events: none;
+/* SCROLL HEIGHT */
+.scroll-space {
+  height: 500vh;
 }
