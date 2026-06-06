@@ -21,7 +21,7 @@ function draw(frame) {
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 }
 
-// THREE JS
+// THREE
 let scene, camera, renderer, cube;
 
 function initThree() {
@@ -58,30 +58,26 @@ function animate() {
 
 initThree();
 
-// SCROLL SYSTEM
+// SCROLL
 window.addEventListener("scroll", () => {
 
   const scrollTop = window.scrollY;
   const maxScroll = document.body.scrollHeight - window.innerHeight;
   const progress = scrollTop / maxScroll;
 
-  // SCENE 1
-  if (progress < 0.4) {
-    const frame = Math.floor(progress / 0.4 * 160);
+  // IMAGE SEQUENCE
+  if (progress < 0.7) {
+    const frame = Math.floor(progress / 0.7 * frameCount);
     draw(frame);
+
     canvas.style.opacity = 1;
     document.getElementById("three-container").style.opacity = 0;
   }
 
-  // SCENE 2
-  else if (progress < 0.7) {
-    const frame = 160 + Math.floor((progress - 0.4) / 0.3 * 80);
-    draw(frame);
-  }
-
-  // SCENE 3 (3D)
+  // 3D TRANSITION
   else {
     const fade = (progress - 0.7) / 0.3;
+
     canvas.style.opacity = 1 - fade;
     document.getElementById("three-container").style.opacity = fade;
   }
