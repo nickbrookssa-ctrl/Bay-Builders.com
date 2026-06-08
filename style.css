@@ -48,3 +48,14 @@ main {
 .scroll-space {
   height: 500vh;
 }
+
+#loader {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: #000; z-index: 9999; display: flex;
+  align-items: center; justify-content: center;
+  transition: opacity 0.5s ease;
+}
+.loader-content { width: 200px; text-align: center; }
+.loader-text { color: #fff; font-size: 0.8rem; margin-bottom: 10px; font-weight: 300; }
+.loader-bar { height: 1px; width: 100%; background: #333; overflow: hidden; }
+.loader-bar-fill { height: 100%; width: 0%; background: #ff5a1f; transition: width 0.2s ease; }
