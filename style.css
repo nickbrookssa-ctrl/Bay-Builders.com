@@ -18,6 +18,34 @@ body {
   height: 40px;
 }
 
+/* LOADER */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  transition: opacity 0.5s ease-out;
+}
+
+#progress-container {
+  width: 200px;
+  height: 2px;
+  background: #333;
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  background: white;
+  transition: width 0.1s ease-out;
+}
+
 /* CANVAS */
 #frame-canvas, #three-container {
   position: fixed;

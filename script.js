@@ -13,6 +13,9 @@ let currentFrame = 0;
 
 // LOAD IMAGES
 function preloadImages() {
+  const progressBar = document.getElementById("progress-bar");
+  const loader = document.getElementById("loader");
+
   return new Promise(resolve => {
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
@@ -20,7 +23,22 @@ function preloadImages() {
 
       img.onload = () => {
         imagesLoaded++;
-        if (imagesLoaded === frameCount) resolve();
+        const progress = Math.round((imagesLoaded / frameCount) * 100);
+
+        if (progressBar) {
+          progressBar.style.width = `${progress}%`;
+          progressBar.setAttribute("aria-valuenow", progress);
+        }
+
+        if (imagesLoaded === frameCount) {
+          if (loader) {
+            loader.style.opacity = "0";
+            setTimeout(() => {
+              loader.style.display = "none";
+            }, 500);
+          }
+          resolve();
+        }
       };
 
       images.push(img);
