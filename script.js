@@ -13,6 +13,9 @@ let currentFrame = 0;
 
 // LOAD IMAGES
 function preloadImages() {
+  const loaderBar = document.getElementById('loader-bar');
+  const loader = document.getElementById('loader');
+
   return new Promise(resolve => {
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
@@ -20,7 +23,19 @@ function preloadImages() {
 
       img.onload = () => {
         imagesLoaded++;
-        if (imagesLoaded === frameCount) resolve();
+        const progress = (imagesLoaded / frameCount) * 100;
+        if (loaderBar) {
+          loaderBar.style.width = `${progress}%`;
+          loaderBar.setAttribute('aria-valuenow', Math.round(progress));
+        }
+
+        if (imagesLoaded === frameCount) {
+          if (loader) {
+            loader.style.opacity = '0';
+            setTimeout(() => { loader.style.display = 'none'; }, 500);
+          }
+          resolve();
+        }
       };
 
       images.push(img);
