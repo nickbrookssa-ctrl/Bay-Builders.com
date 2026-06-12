@@ -5,6 +5,23 @@ body {
   color: white;
 }
 
+/* ACCESSIBILITY */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #fff;
+  color: #000;
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.3s;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 /* NAV */
 .navbar {
   position: fixed;
@@ -34,6 +51,24 @@ body {
 main {
   position: relative;
   z-index: 5;
+}
+
+.contact-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.3s ease, color 0.3s ease;
+  padding-bottom: 2px;
+}
+
+.contact-link:hover {
+  border-bottom: 2px solid white;
+}
+
+.contact-link:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 4px;
 }
 
 .section {
