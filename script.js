@@ -13,6 +13,7 @@ let currentFrame = 0;
 
 // LOAD IMAGES
 function preloadImages() {
+  const loaderBar = document.querySelector(".loader-bar");
   return new Promise(resolve => {
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
@@ -20,6 +21,11 @@ function preloadImages() {
 
       img.onload = () => {
         imagesLoaded++;
+        const percent = (imagesLoaded / frameCount) * 100;
+        if (loaderBar) {
+          loaderBar.style.width = `${percent}%`;
+          loaderBar.setAttribute("aria-valuenow", Math.round(percent));
+        }
         if (imagesLoaded === frameCount) resolve();
       };
 
@@ -118,6 +124,13 @@ window.addEventListener("resize", () => {
 
 // INIT
 preloadImages().then(() => {
+  const loader = document.getElementById("loader-overlay");
+  if (loader) {
+    loader.style.opacity = "0";
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 500);
+  }
   draw(0);
   window.addEventListener("scroll", onScroll);
   initThree();
