@@ -5,6 +5,36 @@ body {
   color: white;
 }
 
+/* LOADER */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  transition: opacity 0.5s ease;
+}
+
+.loader-track {
+  width: 200px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+#loader-progress {
+  width: 0%;
+  height: 100%;
+  background: #ff5a1f;
+  transition: width 0.2s ease;
+}
+
 /* NAV */
 .navbar {
   position: fixed;
