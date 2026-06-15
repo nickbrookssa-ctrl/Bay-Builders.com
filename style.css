@@ -18,6 +18,21 @@ body {
   height: 40px;
 }
 
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 20px;
+  background: white;
+  color: black;
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 10px;
+}
+
 /* CANVAS */
 #frame-canvas, #three-container {
   position: fixed;
@@ -42,6 +57,20 @@ main {
   flex-direction: column;
   justify-content: center;
   padding: 0 10%;
+}
+
+.contact-link {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom 0.2s;
+  width: fit-content;
+}
+
+.contact-link:hover, .contact-link:focus {
+  border-bottom: 1px solid white;
+  outline: none;
 }
 
 /* SCROLL HEIGHT */
