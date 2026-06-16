@@ -1,0 +1,3 @@
+## 2025-05-22 - Preloading Feedback & Canvas Accessibility
+**Learning:** High-volume image preloading (e.g., 200+ frames for scroll animations) without visual feedback creates a "broken" first impression where the UI appears static or unresponsive. Additionally, canvas-based animations are invisible to screen readers without explicit ARIA roles.
+**Action:** Always implement a minimalist loader with `role="progressbar"` for heavy asset loads. Use `element.remove()` synchronized with CSS transitions (e.g., via `setTimeout`) to ensure DOM hygiene after the loading phase. Provide `role="img"` and `aria-label` to canvas elements to describe the visual sequence to assistive technologies.
