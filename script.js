@@ -13,15 +13,24 @@ let currentFrame = 0;
 
 // LOAD IMAGES
 function preloadImages() {
+  const loader = document.getElementById("loader");
   return new Promise(resolve => {
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
       img.src = `frames/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
 
-      img.onload = () => {
+      const onImageLoaded = () => {
         imagesLoaded++;
+        const percent = Math.floor((imagesLoaded / frameCount) * 100);
+        if (loader) {
+          loader.innerText = `${percent}%`;
+          loader.setAttribute("aria-valuenow", percent);
+        }
         if (imagesLoaded === frameCount) resolve();
       };
+
+      img.onload = onImageLoaded;
+      img.onerror = onImageLoaded; // Ensure loader completes even if some frames fail
 
       images.push(img);
     }
@@ -118,6 +127,12 @@ window.addEventListener("resize", () => {
 
 // INIT
 preloadImages().then(() => {
+  const loader = document.getElementById("loader");
+  if (loader) {
+    loader.style.opacity = "0";
+    setTimeout(() => loader.remove(), 500);
+  }
+
   draw(0);
   window.addEventListener("scroll", onScroll);
   initThree();
