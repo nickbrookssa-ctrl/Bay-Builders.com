@@ -44,6 +44,38 @@ main {
   padding: 0 10%;
 }
 
+/* Accessibility: Skip to content */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: #ff5a1f;
+  color: white;
+  padding: 10px 20px;
+  z-index: 1000;
+  transition: top 0.2s;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Interactive Contact Link */
+.contact-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  border-bottom: 1px solid rgba(255, 90, 31, 0.3);
+}
+
+.contact-link:hover, .contact-link:focus {
+  color: #ff5a1f;
+  border-bottom-color: #ff5a1f;
+  outline: none;
+}
+
 /* SCROLL HEIGHT */
 .scroll-space {
   height: 500vh;
