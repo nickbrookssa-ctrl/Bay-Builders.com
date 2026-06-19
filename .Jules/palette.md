@@ -1,0 +1,3 @@
+## 2025-05-14 - [Interactive Contact Details]
+**Learning:** Converting static text contact information (like phone numbers) into interactive `tel:` or `mailto:` links significantly reduces friction for mobile users and improves accessibility. However, in brand-focused minimalist landing pages, these links must be styled to respect the existing visual hierarchy and design tokens to avoid breaking the "invisible UX" principle.
+**Action:** Always wrap contact details in interactive links with clear `aria-label` descriptions. When styling, prioritize existing design tokens or extract them directly from brand assets (like logos) to ensure visual consistency.
