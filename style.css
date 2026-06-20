@@ -18,6 +18,50 @@ body {
   height: 40px;
 }
 
+/* ACCESSIBILITY */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: white;
+  color: black;
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.3s;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* LOADER */
+#loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: opacity 0.5s ease-out;
+}
+
+#loader-bar {
+  width: 0%;
+  height: 2px;
+  background: white;
+  transition: width 0.1s ease-out;
+}
+
+/* CONTACT */
+.contact-link {
+  color: inherit;
+  text-decoration: underline;
+}
+
 /* CANVAS */
 #frame-canvas, #three-container {
   position: fixed;
