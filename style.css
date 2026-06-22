@@ -18,6 +18,17 @@ body {
   height: 40px;
 }
 
+/* PROGRESS BAR */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: #ff5a1f;
+  width: 0%;
+  z-index: 100;
+}
+
 /* CANVAS */
 #frame-canvas, #three-container {
   position: fixed;
