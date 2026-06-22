@@ -86,6 +86,14 @@ function onScroll() {
   const maxScroll = document.body.scrollHeight - window.innerHeight;
   const progress = window.scrollY / maxScroll;
 
+  // UPDATE PROGRESS BAR
+  const progressBar = document.getElementById("progress-bar");
+  if (progressBar) {
+    const percentage = Math.round(progress * 100);
+    progressBar.style.width = `${percentage}%`;
+    progressBar.setAttribute("aria-valuenow", percentage);
+  }
+
   if (progress < 0.7) {
     const frame = Math.floor(progress * frameCount);
 
