@@ -5,6 +5,25 @@ body {
   color: white;
 }
 
+/* LOADER */
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+  transition: opacity 0.5s ease;
+}
+
+.loader-bar {
+  height: 100%;
+  width: 0%;
+  background: #ff5a1f; /* Matches the brand accent in Three.js cube */
+  transition: width 0.2s ease;
+}
+
 /* NAV */
 .navbar {
   position: fixed;

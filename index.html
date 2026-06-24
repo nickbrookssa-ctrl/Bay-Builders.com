@@ -16,14 +16,18 @@
 
 <body>
 
+<div id="loader-container" class="loader-container">
+  <div id="loader-bar" class="loader-bar" role="progressbar" aria-label="Loading assets" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+
 <nav class="navbar">
-  <img src="assets/logo.png" class="logo">
+  <img src="assets/logo.png" class="logo" alt="Bay Builders Logo">
 </nav>
 
-<canvas id="frame-canvas"></canvas>
+<canvas id="frame-canvas" role="img" aria-label="Luxury house construction animation"></canvas>
 <div id="three-container"></div>
 
-<main>
+<main id="main-content">
   <section class="section hero">
     <h1>BAY BUILDERS</h1>
     <p>Luxury Construction & Precision Engineering</p>
