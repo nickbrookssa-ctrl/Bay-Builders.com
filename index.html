@@ -12,15 +12,29 @@
 <!-- favicon fix -->
 <link rel="icon" href="data:,">
 
+<noscript>
+  <style>
+    #loader { display: none !important; }
+  </style>
+</noscript>
+
 </head>
 
 <body>
 
+<div id="loader">
+  <div class="loader-content">
+    <div class="loader-bar-bg">
+      <div id="loader-bar" role="progressbar" aria-label="Loading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  </div>
+</div>
+
 <nav class="navbar">
-  <img src="assets/logo.png" class="logo">
+  <img src="assets/logo.png" alt="Bay Builders Logo" class="logo">
 </nav>
 
-<canvas id="frame-canvas"></canvas>
+<canvas id="frame-canvas" role="img" aria-label="Animated sequence of a luxury building project"></canvas>
 <div id="three-container"></div>
 
 <main>
@@ -41,7 +55,7 @@
 
   <section class="section">
     <h2>Let’s Build Your Vision</h2>
-    <p>083 379 9899</p>
+    <p><a href="tel:0833799899" class="contact-link">083 379 9899</a></p>
   </section>
 </main>
 

@@ -18,6 +18,43 @@ body {
   height: 40px;
 }
 
+.contact-link {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* LOADER */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease-out;
+}
+
+.loader-content {
+  width: 200px;
+}
+
+.loader-bar-bg {
+  width: 100%;
+  height: 2px;
+  background: #333;
+}
+
+#loader-bar {
+  width: 0%;
+  height: 100%;
+  background: #ff5a1f;
+  transition: width 0.1s linear;
+}
+
 /* CANVAS */
 #frame-canvas, #three-container {
   position: fixed;
