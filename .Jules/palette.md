@@ -1,0 +1,3 @@
+## 2024-06-25 - Balancing Rich Feedback with Code Constraints
+**Learning:** In static sites with heavy asset preloading, a simple progress bar can significantly improve perceived performance, but implementing a full-screen loader can easily exceed line-count constraints in small PRs. Accessibility fixes (alt text, landmarks) are low-cost but high-impact.
+**Action:** Use minimalist UI patterns (like top-aligned progress bars) for loading states to keep changes compact while still providing necessary user feedback. Always attach event handlers before setting resource sources to avoid race conditions.
