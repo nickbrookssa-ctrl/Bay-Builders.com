@@ -16,11 +16,23 @@
 
 <body>
 
+<div id="loader" class="loader-container">
+  <div class="loader-bar-bg">
+    <div id="loader-bar" class="loader-bar" role="progressbar" aria-label="Loading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+</div>
+
+<noscript>
+  <style>
+    #loader { display: none; }
+  </style>
+</noscript>
+
 <nav class="navbar">
-  <img src="assets/logo.png" class="logo">
+  <img src="assets/logo.png" class="logo" alt="Bay Builders Logo">
 </nav>
 
-<canvas id="frame-canvas"></canvas>
+<canvas id="frame-canvas" role="img" aria-label="Scroll-controlled construction animation sequence"></canvas>
 <div id="three-container"></div>
 
 <main>
