@@ -18,6 +18,27 @@ body {
   height: 40px;
 }
 
+/* LOADER */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+#progress-bar {
+  width: 0;
+  height: 4px;
+  background: #ff5a1f;
+  transition: width 0.2s ease-out;
+}
+
 /* CANVAS */
 #frame-canvas, #three-container {
   position: fixed;

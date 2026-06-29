@@ -13,13 +13,22 @@ let currentFrame = 0;
 
 // LOAD IMAGES
 function preloadImages() {
+  const progressBar = document.getElementById("progress-bar");
+
   return new Promise(resolve => {
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
       img.src = `frames/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
 
-      img.onload = () => {
+      img.onload = img.onerror = img.onabort = () => {
         imagesLoaded++;
+        const percent = (imagesLoaded / frameCount) * 100;
+
+        if (progressBar) {
+          progressBar.style.width = `${percent}%`;
+          progressBar.setAttribute("aria-valuenow", Math.round(percent));
+        }
+
         if (imagesLoaded === frameCount) resolve();
       };
 
@@ -118,6 +127,11 @@ window.addEventListener("resize", () => {
 
 // INIT
 preloadImages().then(() => {
+  const loader = document.getElementById("loader");
+  if (loader) {
+    setTimeout(() => loader.remove(), 200); // Small buffer for transition
+  }
+
   draw(0);
   window.addEventListener("scroll", onScroll);
   initThree();
