@@ -18,6 +18,8 @@ body {
   height: 40px;
 }
 
+#loader { position: fixed; top: 0; left: 0; height: 3px; background: #ff5a1f; width: 0%; z-index: 100; transition: width 0.2s, opacity 0.5s; }
+
 /* CANVAS */
 #frame-canvas, #three-container {
   position: fixed;
@@ -43,6 +45,9 @@ main {
   justify-content: center;
   padding: 0 10%;
 }
+
+.services-list { list-style: none; padding: 0; }
+.contact-link { color: inherit; text-decoration: underline; }
 
 /* SCROLL HEIGHT */
 .scroll-space {
