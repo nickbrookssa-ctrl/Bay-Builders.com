@@ -13,16 +13,17 @@ let currentFrame = 0;
 
 // LOAD IMAGES
 function preloadImages() {
+  const bar = document.getElementById("loader-bar");
   return new Promise(resolve => {
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
-      img.src = `frames/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
-
-      img.onload = () => {
+      const done = () => {
         imagesLoaded++;
-        if (imagesLoaded === frameCount) resolve();
+        if (bar) bar.style.width = `${(imagesLoaded/frameCount)*100}%`;
+        if (imagesLoaded >= frameCount) resolve();
       };
-
+      img.onload = done; img.onerror = done;
+      img.src = `frames/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
       images.push(img);
     }
   });
@@ -118,6 +119,8 @@ window.addEventListener("resize", () => {
 
 // INIT
 preloadImages().then(() => {
+  const ld = document.getElementById("loader");
+  if (ld) { ld.style.opacity = "0"; setTimeout(() => ld.remove(), 500); }
   draw(0);
   window.addEventListener("scroll", onScroll);
   initThree();
