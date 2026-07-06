@@ -5,6 +5,23 @@ body {
   color: white;
 }
 
+/* LOADER */
+#loader-container {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+#loader-bar {
+  width: 0%;
+  height: 4px;
+  background: #ff5a1f;
+}
+
 /* NAV */
 .navbar {
   position: fixed;
