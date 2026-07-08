@@ -16,12 +16,22 @@
 
 <body>
 
+<div id="loader" role="progressbar" aria-label="Loading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+  <div id="loader-bar"></div>
+</div>
+
+<noscript>
+  <style>
+    #loader { display: none; }
+  </style>
+</noscript>
+
 <nav class="navbar">
-  <img src="assets/logo.png" class="logo">
+  <img src="assets/logo.png" class="logo" alt="Bay Builders Logo">
 </nav>
 
-<canvas id="frame-canvas"></canvas>
-<div id="three-container"></div>
+<canvas id="frame-canvas" role="img" aria-label="3D architectural visualization animation"></canvas>
+<div id="three-container" role="img" aria-label="Interactive 3D model container"></div>
 
 <main>
   <section class="section hero">
