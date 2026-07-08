@@ -1,0 +1,3 @@
+## 2025-05-14 - Accessible Asset Preloading for Canvas Animations
+**Learning:** For sites relying on heavy scroll-based image sequences, providing a progress indicator with `role="progressbar"` is critical for accessibility and UX. Assigning the `src` attribute *after* attaching `onload`, `onerror`, and `onabort` handlers prevents race conditions where cached assets might fire events before listeners are registered. Using `element.remove()` instead of merely hiding the loader ensures a clean DOM state and satisfies automated "detached" checks.
+**Action:** Always implement a progress-tracked loader for asset-heavy experiences and verify removal from the Accessibility Object Model (AOM) after the transition.
