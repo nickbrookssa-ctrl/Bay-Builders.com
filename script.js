@@ -13,16 +13,26 @@ let currentFrame = 0;
 
 // LOAD IMAGES
 function preloadImages() {
+  const loader = document.getElementById("loader");
+  const loaderBar = document.getElementById("loader-bar");
+
   return new Promise(resolve => {
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
-      img.src = `frames/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
-
-      img.onload = () => {
+      img.onload = img.onerror = img.onabort = () => {
         imagesLoaded++;
-        if (imagesLoaded === frameCount) resolve();
-      };
+        const progress = Math.round((imagesLoaded / frameCount) * 100);
+        loaderBar.style.width = `${progress}%`;
+        loader.setAttribute("aria-valuenow", progress);
 
+        if (imagesLoaded >= frameCount) {
+          setTimeout(() => {
+            loader.remove();
+            resolve();
+          }, 500);
+        }
+      };
+      img.src = `frames/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
       images.push(img);
     }
   });
