@@ -14,15 +14,21 @@ let currentFrame = 0;
 // LOAD IMAGES
 function preloadImages() {
   return new Promise(resolve => {
+    const update = () => {
+      imagesLoaded++;
+      const p = (imagesLoaded / frameCount) * 100;
+      document.getElementById('loader-progress').style.width = `${p}%`;
+      document.querySelector('.loader-bar-container').setAttribute('aria-valuenow', Math.round(p));
+      if (imagesLoaded >= frameCount) {
+        const l = document.getElementById('loader');
+        l.style.opacity = '0'; setTimeout(() => l.remove(), 500);
+        resolve();
+      }
+    };
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
+      img.onload = img.onerror = img.onabort = update;
       img.src = `frames/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
-
-      img.onload = () => {
-        imagesLoaded++;
-        if (imagesLoaded === frameCount) resolve();
-      };
-
       images.push(img);
     }
   });
