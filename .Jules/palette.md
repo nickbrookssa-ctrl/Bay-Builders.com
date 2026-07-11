@@ -1,0 +1,3 @@
+## 2024-10-24 - Branded Loader & Semantic Landmarks
+**Learning:** For sites preloading large image sequences (240+ frames), a blank screen creates a 'dead zone' where users may assume the site is broken. A minimalist branded progress loader with ARIA compliance (`role="progressbar"`) managed via the asset preload promise provides critical feedback. Combining this with semantic landmark improvements (main, ul, tel links) provides a high-impact, low-line-count UX boost.
+**Action:** Always implement a progress loader for heavy preloading sequences and use semantic landmarks to ensure accessibility and navigational affordance.

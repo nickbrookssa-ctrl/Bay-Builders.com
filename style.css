@@ -18,6 +18,12 @@ body {
   height: 40px;
 }
 
+.loader-overlay { position: fixed; inset: 0; background: #000; z-index: 100; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s; }
+.loader-bar-container { width: 200px; height: 2px; background: #333; }
+.loader-bar { height: 100%; background: #ff5a1f; width: 0%; transition: width 0.1s; }
+.services-list { list-style: none; padding: 0; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.contact-link { color: inherit; text-decoration: underline; }
+
 /* CANVAS */
 #frame-canvas, #three-container {
   position: fixed;

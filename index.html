@@ -16,8 +16,14 @@
 
 <body>
 
+<div id="loader" class="loader-overlay" role="presentation">
+  <div class="loader-bar-container" role="progressbar" aria-label="Loading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <div id="loader-progress" class="loader-bar"></div>
+  </div>
+</div>
+
 <nav class="navbar">
-  <img src="assets/logo.png" class="logo">
+  <img src="assets/logo.png" class="logo" alt="Bay Builders Logo">
 </nav>
 
 <canvas id="frame-canvas"></canvas>
@@ -36,12 +42,12 @@
 
   <section class="section">
     <h2>Our Services</h2>
-    <p>Turnkey Projects • Renovations • New Builds • Finishes</p>
+    <ul class="services-list"><li>Turnkey Projects</li><li>Renovations</li><li>New Builds</li><li>Finishes</li></ul>
   </section>
 
   <section class="section">
     <h2>Let’s Build Your Vision</h2>
-    <p>083 379 9899</p>
+    <p><a href="tel:0833799899" class="contact-link">083 379 9899</a></p>
   </section>
 </main>
 
