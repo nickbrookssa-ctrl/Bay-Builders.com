@@ -18,6 +18,25 @@ body {
   height: 40px;
 }
 
+.contact-link {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* LOADER */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ff5a1f;
+}
+
 /* CANVAS */
 #frame-canvas, #three-container {
   position: fixed;
