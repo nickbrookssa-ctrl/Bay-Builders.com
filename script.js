@@ -13,13 +13,22 @@ let currentFrame = 0;
 
 // LOAD IMAGES
 function preloadImages() {
+  const loader = document.getElementById("loader");
+
   return new Promise(resolve => {
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
       img.src = `frames/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
 
-      img.onload = () => {
+      img.onload = img.onerror = img.onabort = () => {
         imagesLoaded++;
+        const progress = Math.floor((imagesLoaded / frameCount) * 100);
+
+        if (loader) {
+          loader.innerText = `${progress}%`;
+          loader.setAttribute("aria-valuenow", progress);
+        }
+
         if (imagesLoaded === frameCount) resolve();
       };
 
@@ -118,6 +127,9 @@ window.addEventListener("resize", () => {
 
 // INIT
 preloadImages().then(() => {
+  const loader = document.getElementById("loader");
+  if (loader) loader.remove();
+
   draw(0);
   window.addEventListener("scroll", onScroll);
   initThree();
