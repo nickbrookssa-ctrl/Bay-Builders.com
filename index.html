@@ -16,12 +16,19 @@
 
 <body>
 
+<div id="loader" style="position:fixed;inset:0;background:black;z-index:100;display:flex;align-items:center;justify-content:center;transition:opacity .5s">
+  <div role="progressbar" aria-label="Loading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar" style="width:200px;height:4px;background:#333;border-radius:2px;overflow:hidden">
+    <div id="progress-fill" style="width:0%;height:100%;background:#ff5a1f;transition:width .1s"></div>
+  </div>
+</div>
+<noscript><style>#loader { display: none; }</style></noscript>
+
 <nav class="navbar">
-  <img src="assets/logo.png" class="logo">
+  <img src="assets/logo.png" class="logo" alt="Bay Builders Logo">
 </nav>
 
-<canvas id="frame-canvas"></canvas>
-<div id="three-container"></div>
+<canvas id="frame-canvas" role="img" aria-label="3D architectural visualization animation"></canvas>
+<div id="three-container" aria-hidden="true"></div>
 
 <main>
   <section class="section hero">
@@ -41,7 +48,7 @@
 
   <section class="section">
     <h2>Let’s Build Your Vision</h2>
-    <p>083 379 9899</p>
+    <p><a href="tel:0833799899" class="contact-link" style="color:inherit;text-decoration:underline">083 379 9899</a></p>
   </section>
 </main>
 
