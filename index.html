@@ -17,11 +17,12 @@
 <body>
 
 <nav class="navbar">
-  <img src="assets/logo.png" class="logo">
+  <img src="assets/logo.png" class="logo" alt="Bay Builders Logo">
 </nav>
-
-<canvas id="frame-canvas"></canvas>
-<div id="three-container"></div>
+<div id="loader" class="loader-overlay" style="position:fixed;inset:0;background:#000;display:flex;justify-content:center;align-items:center;z-index:100;transition:opacity .5s"><div class="loader-bar" role="progressbar" aria-label="Loading project frames" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="width:200px;height:4px;background:rgba(255,255,255,.2);border-radius:2px;overflow:hidden;position:relative"><div class="loader-progress" style="position:absolute;inset:0;background:#ff5a1f;transform:scaleX(var(--progress,0));transform-origin:left;transition:transform .1s"></div></div></div>
+<noscript><style>.loader-overlay{display:none;}</style></noscript>
+<canvas id="frame-canvas" aria-label="Interactive 3D building transition animation" role="img"></canvas>
+<div id="three-container" aria-hidden="true"></div>
 
 <main>
   <section class="section hero">
@@ -36,12 +37,12 @@
 
   <section class="section">
     <h2>Our Services</h2>
-    <p>Turnkey Projects • Renovations • New Builds • Finishes</p>
+    <ul style="list-style:none;padding:0;margin:0"><li style="margin-bottom:8px">Turnkey Projects</li><li style="margin-bottom:8px">Renovations</li><li style="margin-bottom:8px">New Builds</li><li>Finishes</li></ul>
   </section>
 
   <section class="section">
     <h2>Let’s Build Your Vision</h2>
-    <p>083 379 9899</p>
+    <p><a href="tel:0833799899" class="contact-link" style="color:inherit;text-decoration:underline">083 379 9899</a></p>
   </section>
 </main>
 
