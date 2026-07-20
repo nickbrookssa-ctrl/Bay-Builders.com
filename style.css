@@ -30,6 +30,17 @@ body {
 #frame-canvas { z-index: 1; }
 #three-container { z-index: 2; opacity: 0; }
 
+/* CONTACT LINK & ACCESSIBILITY */
+.contact-link {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.contact-link:focus-visible {
+  outline: 2px solid #ff5a1f;
+  outline-offset: 4px;
+}
+
 /* CONTENT */
 main {
   position: relative;
