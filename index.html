@@ -16,12 +16,11 @@
 
 <body>
 
-<nav class="navbar">
-  <img src="assets/logo.png" class="logo">
-</nav>
-
-<canvas id="frame-canvas"></canvas>
-<div id="three-container"></div>
+<div id="loader" class="loader" role="progressbar" aria-label="Loading project frames" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;z-index:100;transition:opacity .5s"><div style="width:200px;height:4px;background:rgba(255,255,255,.1);border-radius:2px;overflow:hidden"><div id="loader-bar" style="width:0%;height:100%;background:#ff5a1f;transition:width .1s"></div></div></div>
+<noscript><style>.loader{display:none;}</style></noscript>
+<nav class="navbar"><img src="assets/logo.png" class="logo" alt="Bay Builders Logo"></nav>
+<canvas id="frame-canvas" role="img" aria-label="Interactive 3D building transition animation"></canvas>
+<div id="three-container" aria-hidden="true"></div>
 
 <main>
   <section class="section hero">
