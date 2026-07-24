@@ -1,0 +1,3 @@
+## 2024-07-24 - Preloading and Animation Sequence Sync
+**Learning:** High-volume image preloading loops in heavy scroll-animation websites can lead to race conditions where assets load instantly from the browser cache before standard `onload` handlers attach. Binding these handlers prior to setting `img.src` prevents load failures or stuck loader overlays. Additionally, including `onerror`/`onabort` fallbacks to resolve preloader promises avoids "infinite loaders" when specific network requests fail.
+**Action:** Always assign the `src` property of dynamically created `Image` objects after defining their event handlers (`onload`, `onerror`, `onabort`), and ensure the progress feedback calculations use inclusive operators to avoid boundary logic bugs.

@@ -13,16 +13,30 @@ let currentFrame = 0;
 
 // LOAD IMAGES
 function preloadImages() {
+  const loader = document.getElementById("loader");
+  const loaderBar = document.getElementById("loader-bar");
+
+  const onProgress = () => {
+    imagesLoaded++;
+    const percent = Math.round((imagesLoaded / frameCount) * 100);
+    if (loader && loaderBar) {
+      loaderBar.style.width = `${percent}%`;
+      loader.setAttribute("aria-valuenow", percent);
+    }
+  };
+
   return new Promise(resolve => {
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
-      img.src = `frames/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
-
       img.onload = () => {
-        imagesLoaded++;
-        if (imagesLoaded === frameCount) resolve();
+        onProgress();
+        if (imagesLoaded >= frameCount) resolve();
       };
-
+      img.onerror = img.onabort = () => {
+        onProgress();
+        if (imagesLoaded >= frameCount) resolve();
+      };
+      img.src = `frames/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
       images.push(img);
     }
   });
@@ -121,4 +135,12 @@ preloadImages().then(() => {
   draw(0);
   window.addEventListener("scroll", onScroll);
   initThree();
+
+  const loader = document.getElementById("loader");
+  if (loader) {
+    loader.style.opacity = "0";
+    setTimeout(() => {
+      loader.remove();
+    }, 500);
+  }
 });

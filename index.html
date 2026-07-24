@@ -12,9 +12,20 @@
 <!-- favicon fix -->
 <link rel="icon" href="data:,">
 
+  <noscript>
+    <style>
+      .preloader { display: none !important; }
+    </style>
+  </noscript>
 </head>
 
 <body>
+
+<div id="loader" class="preloader" role="progressbar" aria-label="Loading site components and 3D experience" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+  <div class="preloader-track">
+    <div id="loader-bar" class="preloader-bar"></div>
+  </div>
+</div>
 
 <nav class="navbar">
   <img src="assets/logo.png" class="logo">
