@@ -44,6 +44,13 @@ main {
   padding: 0 10%;
 }
 
+.contact-link { color: inherit; text-decoration: underline; }
+.services-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 15px; }
+.services-list li:not(:last-child)::after { content: " •"; margin-left: 15px; color: #ff5a1f; }
+.loader-overlay { position: fixed; inset: 0; background: #000; z-index: 100; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s; }
+.loader-bar { width: 200px; height: 4px; background: #222; border-radius: 2px; overflow: hidden; position: relative; }
+.loader-bar::before { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--progress, 0%); background: #ff5a1f; transition: width 0.1s; }
+
 /* SCROLL HEIGHT */
 .scroll-space {
   height: 500vh;
