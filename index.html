@@ -16,12 +16,24 @@
 
 <body>
 
+<noscript>
+  <style>.loader-overlay { display: none !important; }</style>
+</noscript>
+<style>
+.loader-overlay{position:fixed;inset:0;background:black;z-index:100;display:flex;justify-content:center;align-items:center;transition:opacity .5s}
+.loader-bar-bg{width:200px;height:4px;background:#333;border-radius:2px;overflow:hidden}
+.loader-bar{width:0;height:100%;background:#ff5a1f;transition:width .1s}
+</style>
+<div id="loader" class="loader-overlay" role="progressbar" aria-label="Loading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+  <div class="loader-bar-bg"><div id="loader-bar" class="loader-bar"></div></div>
+</div>
+
 <nav class="navbar">
-  <img src="assets/logo.png" class="logo">
+  <img src="assets/logo.png" class="logo" alt="Bay Builders Logo">
 </nav>
 
-<canvas id="frame-canvas"></canvas>
-<div id="three-container"></div>
+<canvas id="frame-canvas" role="img" aria-label="Interactive construction progress animation"></canvas>
+<div id="three-container" aria-hidden="true"></div>
 
 <main>
   <section class="section hero">
