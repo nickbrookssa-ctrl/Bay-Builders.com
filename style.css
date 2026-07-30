@@ -4,6 +4,10 @@ body {
   background: black;
   color: white;
 }
+.ld { position: fixed; inset: 0; background: #000; z-index: 100; transition: opacity .5s; }
+.ld::after, .ld::before { content: ''; position: absolute; top: 50%; left: 50%; height: 4px; border-radius: 2px; }
+.ld::after { width: 200px; background: #333; transform: translate(-50%, -50%); }
+.ld::before { width: var(--p, 0%); background: #ff5a1f; z-index: 101; transform: translate(-100px, -50%); transition: width .1s; }
 
 /* NAV */
 .navbar {
