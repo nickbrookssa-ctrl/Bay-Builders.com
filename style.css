@@ -44,6 +44,18 @@ main {
   padding: 0 10%;
 }
 
+/* CONTACT LINK styling matching brand design guidelines */
+.contact-link {
+  color: inherit;
+  text-decoration: underline;
+  outline: none;
+}
+
+.contact-link:focus-visible {
+  outline: 2px solid #ff5a1f; /* matching the brand's primary accent color */
+  outline-offset: 4px;
+}
+
 /* SCROLL HEIGHT */
 .scroll-space {
   height: 500vh;
