@@ -1,0 +1,3 @@
+## 2024-11-04 - Minimalist Branded Loader Pattern
+**Learning:** When loading heavy high-asset content sequences in static environments, establishing a minimalist progress bar with ARIA progressbar compliance ('aria-valuenow', 'aria-valuemax', 'role') resolves the UX 'dead zone'. Registering loader event handlers before assigning sources prevents race conditions, and inclusive comparison checks for loops guarantee consistent DOM cleanup.
+**Action:** Always implement a branded progress loader using inclusive counts, inline/noscript CSS fallbacks, and 'role="progressbar"' attributes for heavy images preloading loops.
