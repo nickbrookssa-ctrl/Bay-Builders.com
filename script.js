@@ -13,16 +13,24 @@ let currentFrame = 0;
 
 // LOAD IMAGES
 function preloadImages() {
+  const loaderBar = document.getElementById("loader-bar");
   return new Promise(resolve => {
+    const handleLoad = () => {
+      imagesLoaded++;
+      const percent = Math.round((imagesLoaded / frameCount) * 100);
+      if (loaderBar) {
+        loaderBar.setAttribute("aria-valuenow", percent);
+        loaderBar.style.setProperty("--progress", `${percent}%`);
+      }
+      if (imagesLoaded >= frameCount) resolve();
+    };
+
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
+      img.onload = handleLoad;
+      img.onerror = handleLoad;
+      img.onabort = handleLoad;
       img.src = `frames/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
-
-      img.onload = () => {
-        imagesLoaded++;
-        if (imagesLoaded === frameCount) resolve();
-      };
-
       images.push(img);
     }
   });
@@ -121,4 +129,10 @@ preloadImages().then(() => {
   draw(0);
   window.addEventListener("scroll", onScroll);
   initThree();
+
+  const loader = document.getElementById("loader");
+  if (loader) {
+    loader.style.opacity = 0;
+    setTimeout(() => loader.remove(), 500);
+  }
 });
