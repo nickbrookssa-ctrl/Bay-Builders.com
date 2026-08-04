@@ -16,13 +16,16 @@
 
 <body>
 
+<noscript><style>.ld-over { display: none !important; }</style></noscript>
 <nav class="navbar">
-  <img src="assets/logo.png" class="logo">
+  <img src="assets/logo.png" class="logo" alt="Bay Builders Logo">
 </nav>
-
-<canvas id="frame-canvas"></canvas>
-<div id="three-container"></div>
-
+<div id="ld" class="ld-over" role="progressbar" aria-label="Loading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+  <div class="ld-spin"></div>
+  <div id="ld-pct" class="ld-txt">0%</div>
+</div>
+<canvas id="frame-canvas" role="img" aria-label="Luxury home exterior animation sequence"></canvas>
+<div id="three-container" aria-hidden="true"></div>
 <main>
   <section class="section hero">
     <h1>BAY BUILDERS</h1>
@@ -41,7 +44,7 @@
 
   <section class="section">
     <h2>Let’s Build Your Vision</h2>
-    <p>083 379 9899</p>
+    <p><a href="tel:0833799899" class="contact-link">083 379 9899</a></p>
   </section>
 </main>
 

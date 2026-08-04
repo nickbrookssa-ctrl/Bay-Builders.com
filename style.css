@@ -13,6 +13,11 @@ body {
   padding: 20px;
   z-index: 10;
 }
+.contact-link { color: inherit; text-decoration: underline; }
+.ld-over { position: fixed; inset: 0; background: black; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 100; transition: opacity 0.5s ease; }
+.ld-spin { width: 40px; height: 40px; border: 4px solid rgba(255,90,31,0.2); border-top: 4px solid #ff5a1f; border-radius: 50%; animation: spin 1s linear infinite; }
+.ld-txt { margin-top: 15px; font-size: 14px; font-weight: 600; }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
 .logo {
   height: 40px;
