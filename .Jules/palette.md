@@ -1,0 +1,3 @@
+## 2026-06-06 - Interactive Phone Contact Links
+**Learning:** Hardcoded text-based contact phone numbers on mobile devices or modern browsers create user frustration due to the lack of interactive click-to-dial functionality. Wrapping contact numbers in semantic `tel:` hyperlinks with appropriate styling guarantees seamless, native communication channels while ensuring accessibility compliance.
+**Action:** Always implement telephone numbers as interactive 'tel:' links, using standard classes like `.contact-link` with inherited typography styles (`color: inherit; text-decoration: underline;`) to fit natively into any design pattern.
