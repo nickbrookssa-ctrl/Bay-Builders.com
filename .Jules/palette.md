@@ -1,0 +1,3 @@
+## 2026-08-08 - Progressive Preloader UI for High-Asset Sequence
+**Learning:** For heavy scroll-sequence websites preloading hundreds of frames (240 images), a blank start creates a "dead zone" that hurts user retention. A custom preloader using semantic progress role elements (progressbar), brand colors, and handling onload/onerror/onabort gracefully improves perceived loading speed and accessibility.
+**Action:** Always add a loader overlay with `role="progressbar"`, dynamic percentage update, and fallback CSS inside `<noscript>` tags, then cleanly remove the loader via JavaScript after a fade-out transition.
