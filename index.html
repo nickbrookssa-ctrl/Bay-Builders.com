@@ -17,11 +17,14 @@
 <body>
 
 <nav class="navbar">
-  <img src="assets/logo.png" class="logo">
+  <img src="assets/logo.png" class="logo" alt="Bay Builders Logo">
 </nav>
 
-<canvas id="frame-canvas"></canvas>
-<div id="three-container"></div>
+<div id="loader" class="loader-overlay" role="progressbar" aria-label="Loading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="loader-text">0%</span></div>
+<noscript><style>.loader-overlay { display: none; }</style></noscript>
+
+<canvas id="frame-canvas" role="img" aria-label="Building construction sequence animation"></canvas>
+<div id="three-container" aria-hidden="true"></div>
 
 <main>
   <section class="section hero">
