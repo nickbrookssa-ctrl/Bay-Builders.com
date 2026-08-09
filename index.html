@@ -16,12 +16,27 @@
 
 <body>
 
+<noscript>
+  <style>
+    #loader { display: none !important; }
+  </style>
+</noscript>
+
+<div id="loader" role="progressbar" aria-label="Loading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+  <div class="loader-content">
+    <div class="loader-track">
+      <div id="loader-bar"></div>
+    </div>
+    <span class="loader-text">Loading... <span id="loader-percent">0</span>%</span>
+  </div>
+</div>
+
 <nav class="navbar">
-  <img src="assets/logo.png" class="logo">
+  <img src="assets/logo.png" class="logo" alt="Bay Builders Logo">
 </nav>
 
-<canvas id="frame-canvas"></canvas>
-<div id="three-container"></div>
+<canvas id="frame-canvas" role="img" aria-label="Animated visualization of a luxury modern residential construction project changing as you scroll"></canvas>
+<div id="three-container" aria-hidden="true"></div>
 
 <main>
   <section class="section hero">
@@ -36,12 +51,17 @@
 
   <section class="section">
     <h2>Our Services</h2>
-    <p>Turnkey Projects • Renovations • New Builds • Finishes</p>
+    <ul class="services-list">
+      <li>Turnkey Projects</li>
+      <li>Renovations</li>
+      <li>New Builds</li>
+      <li>Finishes</li>
+    </ul>
   </section>
 
   <section class="section">
     <h2>Let’s Build Your Vision</h2>
-    <p>083 379 9899</p>
+    <p><a href="tel:0833799899" class="contact-link">083 379 9899</a></p>
   </section>
 </main>
 

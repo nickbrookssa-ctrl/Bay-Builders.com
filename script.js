@@ -13,16 +13,46 @@ let currentFrame = 0;
 
 // LOAD IMAGES
 function preloadImages() {
+  const loader = document.getElementById("loader");
+  const bar = document.getElementById("loader-bar");
+  const percentText = document.getElementById("loader-percent");
+
   return new Promise(resolve => {
+    function updateProgress() {
+      const percent = Math.floor((imagesLoaded / frameCount) * 100);
+      if (bar) bar.style.width = `${percent}%`;
+      if (percentText) percentText.textContent = percent;
+      if (loader) loader.setAttribute("aria-valuenow", percent);
+
+      if (imagesLoaded >= frameCount) {
+        if (loader) {
+          loader.style.opacity = 0;
+          setTimeout(() => {
+            loader.remove();
+          }, 500);
+        }
+        resolve();
+      }
+    }
+
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
-      img.src = `frames/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
 
       img.onload = () => {
         imagesLoaded++;
-        if (imagesLoaded === frameCount) resolve();
+        updateProgress();
+      };
+      img.onerror = () => {
+        imagesLoaded++;
+        updateProgress();
+      };
+      img.onabort = () => {
+        imagesLoaded++;
+        updateProgress();
       };
 
+      // Set src AFTER event handlers are attached to prevent race conditions with cached images
+      img.src = `frames/ezgif-frame-${String(i).padStart(3, '0')}.jpg`;
       images.push(img);
     }
   });
