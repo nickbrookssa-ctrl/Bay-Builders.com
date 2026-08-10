@@ -44,6 +44,37 @@ main {
   padding: 0 10%;
 }
 
+/* SERVICES LIST */
+.services-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.services-list li {
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.services-list li::before {
+  content: "•";
+  color: #ff5a1f;
+  position: absolute;
+  left: 0;
+}
+
+/* CONTACT LINK */
+.contact-link {
+  color: inherit;
+  text-decoration: underline;
+  transition: opacity 0.2s ease;
+}
+
+.contact-link:hover, .contact-link:focus {
+  opacity: 0.8;
+}
+
 /* SCROLL HEIGHT */
 .scroll-space {
   height: 500vh;
