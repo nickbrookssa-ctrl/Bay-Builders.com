@@ -14,6 +14,10 @@ body {
   z-index: 10;
 }
 
+.contact-link { color: inherit; text-decoration: underline; }
+.loader { position: fixed; inset: 0; z-index: 100; background: black; display: flex; align-items: center; justify-content: center; transition: opacity 0.5s ease; }
+.loader::after { content: ""; position: absolute; bottom: 0; left: 0; height: 4px; width: var(--progress, 0%); background: #ff5a1f; transition: width 0.1s ease; }
+
 .logo {
   height: 40px;
 }
