@@ -44,6 +44,20 @@ main {
   padding: 0 10%;
 }
 
+.contact-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: opacity 0.2s ease;
+}
+
+.contact-link:hover,
+.contact-link:focus-visible {
+  opacity: 0.8;
+  outline: 2px solid #ff5a1f;
+  outline-offset: 4px;
+}
+
 /* SCROLL HEIGHT */
 .scroll-space {
   height: 500vh;
