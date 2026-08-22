@@ -36,6 +36,19 @@ main {
   z-index: 5;
 }
 
+.contact-link {
+  color: inherit;
+  text-decoration: underline;
+  transition: opacity 0.2s ease;
+}
+
+.contact-link:hover,
+.contact-link:focus-visible {
+  opacity: 0.8;
+  outline: 2px solid #ff5a1f;
+  outline-offset: 4px;
+}
+
 .section {
   height: 100vh;
   display: flex;
