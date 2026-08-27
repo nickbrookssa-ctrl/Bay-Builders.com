@@ -5,6 +5,15 @@ body {
   color: white;
 }
 
+#preloader {
+  position: fixed; inset: 0; z-index: 100; background: black;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 12px;
+  transition: opacity 0.5s ease;
+}
+#preloader-bar {
+  height: 4px; background: #ff5a1f; width: 0; max-width: 200px; transition: width 0.1s linear;
+}
+
 /* NAV */
 .navbar {
   position: fixed;

@@ -1,0 +1,3 @@
+## 2025-05-10 - High-Frequency Asset Preloading with Dynamic Progress Bars
+**Learning:** Preloading large image sequences (e.g. 200+ frames) causes initial visual dead-zones. Using `role="progressbar"` with `aria-valuenow` updated dynamically provides progress feedback to screen readers and visual users without screen-reader chatter if `aria-live="polite"` is avoided on high-frequency updates. Attaching `onerror` and `onabort` alongside `onload` ensures failure modes don't freeze the loading overlay.
+**Action:** Always bind `onload`, `onerror`, and `onabort` before setting image `src`, use non-annoying ARIA attributes for rapid progress updates, and clean up loader DOM elements (`loader.remove()`) with CSS transition synchronization.
