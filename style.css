@@ -36,6 +36,11 @@ main {
   z-index: 5;
 }
 
+.contact-link {
+  color: inherit;
+  text-decoration: underline;
+}
+
 .section {
   height: 100vh;
   display: flex;
