@@ -44,6 +44,30 @@ main {
   padding: 0 10%;
 }
 
+.services-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.services-list li::after {
+  content: "•";
+  margin-left: 1rem;
+  opacity: 0.5;
+}
+
+.services-list li:last-child::after {
+  content: "";
+}
+
+.contact-link {
+  color: inherit;
+  text-decoration: underline;
+}
+
 /* SCROLL HEIGHT */
 .scroll-space {
   height: 500vh;
