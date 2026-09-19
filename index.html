@@ -17,11 +17,11 @@
 <body>
 
 <nav class="navbar">
-  <img src="assets/logo.png" class="logo">
+  <img src="assets/logo.png" alt="Bay Builders Logo" class="logo">
 </nav>
 
-<canvas id="frame-canvas"></canvas>
-<div id="three-container"></div>
+<canvas id="frame-canvas" aria-hidden="true"></canvas>
+<div id="three-container" aria-hidden="true"></div>
 
 <main>
   <section class="section hero">
@@ -36,12 +36,17 @@
 
   <section class="section">
     <h2>Our Services</h2>
-    <p>Turnkey Projects • Renovations • New Builds • Finishes</p>
+    <ul class="services-list">
+      <li>Turnkey Projects</li>
+      <li>Renovations</li>
+      <li>New Builds</li>
+      <li>Finishes</li>
+    </ul>
   </section>
 
   <section class="section">
     <h2>Let’s Build Your Vision</h2>
-    <p>083 379 9899</p>
+    <p><a href="tel:0833799899" class="contact-link">083 379 9899</a></p>
   </section>
 </main>
 
