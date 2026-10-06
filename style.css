@@ -44,6 +44,12 @@ main {
   padding: 0 10%;
 }
 
+/* CONTACT LINK */
+.contact-link {
+  color: inherit;
+  text-decoration: underline;
+}
+
 /* SCROLL HEIGHT */
 .scroll-space {
   height: 500vh;
