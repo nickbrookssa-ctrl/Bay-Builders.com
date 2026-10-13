@@ -44,6 +44,17 @@ main {
   padding: 0 10%;
 }
 
+.services-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.contact-link {
+  color: inherit;
+  text-decoration: underline;
+}
+
 /* SCROLL HEIGHT */
 .scroll-space {
   height: 500vh;
