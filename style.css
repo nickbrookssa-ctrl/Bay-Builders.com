@@ -48,3 +48,9 @@ main {
 .scroll-space {
   height: 500vh;
 }
+
+/* CONTACT LINK */
+.contact-link {
+  color: inherit;
+  text-decoration: underline;
+}
