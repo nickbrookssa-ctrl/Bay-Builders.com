@@ -5,6 +5,25 @@ body {
   color: white;
 }
 
+/* LOADER */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 100;
+  transition: opacity 0.4s ease;
+}
+
+#loader-bar {
+  height: 100%;
+  width: 0%;
+  background: #ff5a1f;
+  transition: width 0.1s ease;
+}
+
 /* NAV */
 .navbar {
   position: fixed;
