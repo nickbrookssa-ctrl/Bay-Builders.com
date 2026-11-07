@@ -48,3 +48,22 @@ main {
 .scroll-space {
   height: 500vh;
 }
+
+/* CONTACT LINK */
+.contact-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 0.2s ease;
+}
+
+.contact-link:hover {
+  color: #ff5a1f;
+}
+
+.contact-link:focus-visible {
+  color: #ff5a1f;
+  outline: 2px solid #ff5a1f;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
